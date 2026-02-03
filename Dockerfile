@@ -107,6 +107,9 @@ RUN su - www -c 'curl -fsSL https://claude.ai/install.sh | bash'
 # Install code-server (VS Code in browser)
 RUN curl -fsSL https://code-server.dev/install.sh | sh
 
+# Install just command runner (not in Debian stable repos yet)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
+
 # Install supervisor and development tools in one layer
 RUN apt-get update && apt-get install -y \
     # Process management

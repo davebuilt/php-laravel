@@ -47,7 +47,7 @@ Everything in base, plus:
 - code-server (VS Code in browser)
 - Node.js 20.x
 - Supervisor (process management)
-- Development tools: vim, nano, htop, tmux, ripgrep, fd, jq, tree, fzf
+- Development tools: just, vim, nano, htop, tmux, ripgrep, fd, jq, tree, fzf
 
 ## Usage
 

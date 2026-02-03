@@ -30,7 +30,7 @@ Images are published to `ghcr.io/davebuilt/php-laravel` for PHP versions 8.2, 8.
 
 ### Dockerfile Structure
 - **base stage**: PHP-FPM, common extensions (pdo_mysql, zip, exif, pcntl, mbstring, xml, soap, dom, gd, redis), Composer 2, image optimisation tools, runs as `www` user
-- **dev stage**: Extends base with Node.js 20.x, Claude Code CLI, code-server, supervisor, dev tools (ripgrep, fd, fzf, jq, vim, htop, tmux)
+- **dev stage**: Extends base with Node.js 20.x, Claude Code CLI, code-server, supervisor, dev tools (just, ripgrep, fd, fzf, jq, vim, htop, tmux)
 
 ### Supervisor Configuration (`supervisord.conf`)
 Manages processes in dev stage:
