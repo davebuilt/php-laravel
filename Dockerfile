@@ -156,6 +156,18 @@ RUN mkdir -p /home/www/.claude/projects \
 RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/www/.bashrc \
     && echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/www/.profile
 
+# Auto-source Laravel .env for convenient database access and other env vars
+# set -a exports all variables, set +a turns it off after sourcing
+RUN cat >> /home/www/.bashrc <<'EOF'
+
+# Source Laravel .env if in project directory
+if [ -f /var/www/.env ]; then
+    set -a
+    source /var/www/.env
+    set +a
+fi
+EOF
+
 # Copy supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
