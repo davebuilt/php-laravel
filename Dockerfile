@@ -72,8 +72,9 @@ RUN groupadd -g ${GROUP_ID} ${GROUP} \
 RUN sed -i 's/user = www-data/user = www/g' /usr/local/etc/php-fpm.d/www.conf \
     && sed -i 's/group = www-data/group = www/g' /usr/local/etc/php-fpm.d/www.conf
 
-# Set ownership
-RUN chown -R ${USER}:${GROUP} /var/www
+# Set ownership and ensure /tmp is writable (required by tools like Laravel Pint)
+RUN chown -R ${USER}:${GROUP} /var/www \
+    && chmod 1777 /tmp
 
 # PHP-FPM runs on port 9000
 EXPOSE 9000
