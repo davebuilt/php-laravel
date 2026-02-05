@@ -59,6 +59,7 @@ Manages processes in dev stage:
 | `CODE_SERVER_ENABLED` | `true` | Enable/disable code-server |
 | `CODE_AUTH` | `password` | `none` for no auth, or `password` |
 | `PASSWORD` | (none) | Password for code-server |
+| `CODE_SERVER_APP_NAME` | (empty) | Browser tab title for code-server (e.g. project name) |
 | `QUEUE_WORKER_ENABLED` | `false` | Run `php artisan queue:work` |
 | `SCHEDULER_ENABLED` | `false` | Run Laravel scheduler (checks every 60s) |
 
