@@ -51,6 +51,7 @@ Manages processes in dev stage:
 | `PHP_VERSION` | 8.2 | PHP version to build |
 | `USER_ID` | 1000 | UID for www user (match host for dev) |
 | `GROUP_ID` | 1000 | GID for www group |
+| `LOCALE` | en_GB.UTF-8 | System locale for dev stage |
 
 ## Environment Variables (Dev Stage)
 
