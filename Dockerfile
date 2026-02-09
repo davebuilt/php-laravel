@@ -114,10 +114,13 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash 
 RUN apt-get update && apt-get install -y \
     # Process management
     supervisor \
+    sudo \
     # Editors
     vim \
     nano \
     less \
+    # Bash Completion
+    bash-completion \
     # System monitoring
     htop \
     # Terminal multiplexer
@@ -128,14 +131,20 @@ RUN apt-get update && apt-get install -y \
     jq \
     tree \
     fzf \
+    # Git tools
+    tig \
+    bat \
+    lazygit \
     # Network tools
     netcat-openbsd \
     iputils-ping \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && echo "www ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Create symlinks for fd (it's called fdfind on Debian/Ubuntu)
-RUN ln -sf /usr/bin/fdfind /usr/local/bin/fd 2>/dev/null || true
+# Create symlinks for fd and bat (it's called fdfind and batcat on Debian/Ubuntu)
+RUN ln -sf /usr/bin/fdfind /usr/local/bin/fd 2>/dev/null || true \
+    && ln -sf /usr/bin/batcat /usr/local/bin/bat 2>/dev/null || true
 
 # Create supervisor directories
 RUN mkdir -p /var/log/supervisor /etc/supervisor/conf.d
