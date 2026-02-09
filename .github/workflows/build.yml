@@ -6,6 +6,7 @@ on:
     paths:
       - 'Dockerfile'
       - 'supervisord.conf'
+      - '.bashrc'
       - '.github/workflows/build.yml'
   schedule:
     - cron: '0 4 * * 0'  # Every Sunday at 4am UTC - pulls latest PHP security patches

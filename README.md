@@ -48,6 +48,69 @@ Everything in base, plus:
 - Node.js 20.x
 - Supervisor (process management)
 - Development tools: just, vim, nano, htop, tmux, ripgrep, fd, jq, tree, fzf
+- Custom bash prompt and shell aliases (see below)
+
+### Shell Environment (Dev Stage)
+
+The dev container includes a custom `.bashrc` with an informative prompt, shell aliases, and tool integrations.
+
+#### Prompt
+
+A two-line prompt that shows your Laravel app name, working directory, and git status:
+
+```
+[MyApp] ~/app/Models (main *+?)
+$
+```
+
+- **App name** (cyan): Read from your Laravel `.env` `APP_NAME`, falls back to `laravel`
+- **Directory** (blue): `/var/www` is shortened to `~` since it's the project root
+- **Git branch** (green=clean, yellow=dirty): `*` unstaged, `+` staged, `?` untracked
+- **`$` prompt**: Green on success, red when the last command failed
+
+#### Aliases
+
+| Alias | Command | Category |
+|-------|---------|----------|
+| `art` | `php artisan` | Laravel |
+| `tinker` | `php artisan tinker` | Laravel |
+| `fresh` | `php artisan migrate:fresh --seed` | Laravel |
+| `seed` | `php artisan db:seed` | Laravel |
+| `routes` | `php artisan route:list` | Laravel |
+| `serve` | `php artisan serve` | Laravel |
+| `sail` | `vendor/bin/sail` | Laravel |
+| `pest` | `vendor/bin/pest` | Laravel |
+| `pint` | `vendor/bin/pint` | Laravel |
+| `ci` | `composer install` | Composer |
+| `cu` | `composer update` | Composer |
+| `cr` | `composer require` | Composer |
+| `cda` | `composer dump-autoload` | Composer |
+| `gs` | `git status` | Git |
+| `gl` | `git log --oneline -20` | Git |
+| `gd` | `git diff` | Git |
+| `gds` | `git diff --staged` | Git |
+| `t` | `php artisan test` | Testing |
+| `tf` | `php artisan test --filter` | Testing |
+| `tp` | `php artisan test --parallel` | Testing |
+| `dev` | `npm run dev` | npm |
+| `build` | `npm run build` | npm |
+| `watch` | `npm run dev -- --watch` | npm |
+| `ll` | `ls -alF --color=auto` | Directory |
+| `la` | `ls -A --color=auto` | Directory |
+| `..` / `...` | `cd ..` / `cd ../..` | Navigation |
+| `cls` | `clear` | Navigation |
+
+#### Tool Integrations
+
+- **bat**: Used as `MANPAGER` for syntax-highlighted man pages
+- **fzf**: `Ctrl+R` for fuzzy history search, `Ctrl+T` for file search, `Alt+C` for directory navigation — all powered by `fd`
+- **Coloured man pages**: `LESS_TERMCAP` variables for colour in `less`
+
+#### Shell Options
+
+- 10,000 line history with timestamps, no duplicates, append mode
+- Case-insensitive globbing, `cd` typo correction, recursive `**` globs
+- Bash completion enabled
 
 ## Usage
 

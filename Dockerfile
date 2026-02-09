@@ -152,19 +152,10 @@ RUN mkdir -p /var/log/supervisor /etc/supervisor/conf.d \
                /home/www/.local/share/code-server \
     && chown -R www:www /home/www \
     && chmod -R 755 /home/www/.claude /home/www/.local \
-    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/www/.bashrc \
-    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/www/.profile \
-    && cat >> /home/www/.bashrc <<'BASHRC'
+    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> /home/www/.profile
 
-# Source Laravel .env if in project directory
-if [ -f /var/www/.env ]; then
-    set -a
-    source /var/www/.env
-    set +a
-fi
-BASHRC
-
-# Copy supervisor configuration
+# Copy shell and supervisor configuration
+COPY --chown=www:www .bashrc /home/www/.bashrc
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Expose ports
