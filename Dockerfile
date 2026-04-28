@@ -101,6 +101,8 @@ ENV LANG=${LOCALE} \
     LC_ALL=${LOCALE}
 
 # Install Node.js 20.x, supervisor, and development tools
+# lazygit is only packaged from Debian 12+ (trixie has it in main), so it's
+# installed conditionally — PHP 7.4 runs on bullseye where it isn't available.
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get update && apt-get install -y \
     nodejs \
@@ -126,15 +128,15 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     # Git tools
     tig \
     bat \
-    lazygit \
     # Network tools
     netcat-openbsd \
     iputils-ping \
+    && (apt-get install -y lazygit || echo "lazygit not available on this distro, skipping") \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && echo "www ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
-    && ln -sf /usr/bin/fdfind /usr/local/bin/fd 2>/dev/null || true \
-    && ln -sf /usr/bin/batcat /usr/local/bin/bat 2>/dev/null || true
+    && { ln -sf /usr/bin/fdfind /usr/local/bin/fd 2>/dev/null || true; } \
+    && { ln -sf /usr/bin/batcat /usr/local/bin/bat 2>/dev/null || true; }
 
 # Install Claude Code using the official installation method
 # This installs to ~/.local/bin which is why we need that directory in PATH
