@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 IMAGE_NAME="davebuilt/php-laravel"
 
 # Supported PHP versions
-VERSIONS=("8.2" "8.3" "8.4")
+VERSIONS=("7.4" "8.2" "8.3" "8.4")
 
 # Parse arguments
 SPECIFIC_VERSION=""
@@ -24,7 +24,7 @@ BUILD_ARGS=""
 
 for arg in "$@"; do
     case $arg in
-        8.*)
+        7.*|8.*)
             SPECIFIC_VERSION="$arg"
             ;;
         --no-cache|--pull|--quiet)

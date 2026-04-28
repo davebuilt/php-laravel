@@ -8,7 +8,7 @@ Docker base images for Laravel development. Multi-stage Dockerfile produces:
 - **base** stage: Production-ready PHP-FPM with Laravel extensions
 - **dev** stage: Full development environment with Claude Code, code-server, Node.js, and dev tools
 
-Images are published to `ghcr.io/davebuilt/php-laravel` for PHP versions 8.2, 8.3, and 8.4.
+Images are published to `ghcr.io/davebuilt/php-laravel` for PHP versions 7.4, 8.2, 8.3, and 8.4.
 
 ## Build Commands
 
